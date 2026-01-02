@@ -1,0 +1,1394 @@
+=== Directory Structure ===
+└── portflio
+    ├── codebase_filtered_v2 (1)Update.py
+    ├── index.html
+    ├── script.js
+    └── styles.css
+
+=== File Contents ===
+
+--- File: codebase_filtered_v2 (1)Update.py ---
+
+import os
+import sys
+
+
+SKIP_DIRS = {
+    '.git', 'node_modules', 'venv', '__pycache__',
+    '.venv', 'dist', 'build', '.idea', 'target'
+}
+
+SKIP_FILES = {
+    'package-lock.json',
+    'yarn.lock',
+    'pnpm-lock.yaml',
+    '.DS_Store'
+}
+
+ALLOWED_EXTENSIONS = (
+    '.py', '.js', '.ts', '.jsx', '.tsx',
+    '.java', '.cpp', '.h', '.cs',
+    '.html', '.css',
+    '.json', '.yml', '.yaml', '.xml',
+    '.md', '.txt',
+    '.sh', '.bat',
+    '.sql',
+    '.env'
+)
+
+def generate_tree(root_dir, output_file, prefix="", is_last=True):
+    tree = []
+    root_name = os.path.basename(root_dir)
+    tree.append(f"{prefix}{'└── ' if is_last else '├── '}{root_name}")
+
+    prefix += "    " if is_last else "│   "
+    output_abs = os.path.abspath(output_file)
+
+    try:
+        items = sorted(os.listdir(root_dir))
+        visible_items = []
+
+        for item in items:
+            item_path = os.path.join(root_dir, item)
+
+            if os.path.abspath(item_path) == output_abs:
+                continue
+
+            if os.path.isdir(item_path):
+                if item in SKIP_DIRS:
+                    continue
+                visible_items.append(item)
+
+            else:
+                if item in SKIP_FILES:
+                    continue
+                if item.lower().endswith(ALLOWED_EXTENSIONS):
+                    visible_items.append(item)
+
+        for i, item in enumerate(visible_items):
+            item_path = os.path.join(root_dir, item)
+            is_last_item = i == len(visible_items) - 1
+
+            if os.path.isdir(item_path):
+                tree.extend(
+                    generate_tree(item_path, output_file, prefix, is_last_item)
+                )
+            else:
+                tree.append(
+                    f"{prefix}{'└── ' if is_last_item else '├── '}{item}"
+                )
+
+    except PermissionError:
+        tree.append(f"{prefix}└── [Permission denied]")
+
+    return tree
+
+
+def collect_codebase(root_dir, output_file):
+    output_abs = os.path.abspath(output_file)
+
+    with open(output_file, 'w', encoding='utf-8') as out:
+        # Directory tree
+        out.write("=== Directory Structure ===\n")
+        tree = generate_tree(root_dir, output_file)
+        out.write("\n".join(tree))
+        out.write("\n\n=== File Contents ===\n\n")
+
+        for dirpath, dirnames, filenames in os.walk(root_dir, topdown=True):
+            dirnames[:] = [d for d in dirnames if d not in SKIP_DIRS]
+
+            for filename in filenames:
+                if filename in SKIP_FILES:
+                    continue
+
+                if not filename.lower().endswith(ALLOWED_EXTENSIONS):
+                    continue
+
+                file_path = os.path.join(dirpath, filename)
+
+                if os.path.abspath(file_path) == output_abs:
+                    continue
+
+                rel_path = os.path.relpath(file_path, root_dir)
+                out.write(f"--- File: {rel_path} ---\n\n")
+
+                try:
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        out.write(f.read())
+                        out.write("\n\n")
+                except UnicodeDecodeError:
+                    out.write("[[Binary or non-text file skipped]]\n\n")
+                except Exception as e:
+                    out.write(f"[[Error reading file: {e}]]\n\n")
+
+    print(f"✅ Codebase exported to {output_file}")
+
+
+if __name__ == "__main__":
+    root = sys.argv[1] if len(sys.argv) > 1 else os.getcwd()
+    output = sys.argv[2] if len(sys.argv) > 2 else "codebase_smart.txt"
+    collect_codebase(root, output)
+
+
+--- File: index.html ---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ravi Kushwaha - Web Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="https://placehold.co/400x400/2563eb/white?text=RK" alt="Ravi Kushwaha Logo">
+                <span>Ravi Kushwaha</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#certificates">Certificates</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 data-aos="fade-up">Hi, I'm <span class="highlight">Ravi Kushwaha</span></h1>
+                <p data-aos="fade-up" data-aos-delay="300">A Passionate Web Developer Creating Engaging and Responsive Websites</p>
+                <div class="hero-btns" data-aos="fade-up" data-aos-delay="500">
+                    <a href="#projects" class="btn">View My Work</a>
+                    <a href="#contact" class="btn btn-outline">Contact Me</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 data-aos="fade-up">About Me</h2>
+            <div class="about-content">
+                <div class="about-text" data-aos="fade-right">
+                    <p>
+                      I'm Ravi Kushwaha, a passionate Web Developer dedicated to building clean, responsive, and user-friendly websites. I specialize in HTML, CSS, JavaScript, and modern frameworks such as React and Vue.js. With a strong focus on performance, accessibility, and seamless user experience, I strive to deliver high-quality web solutions that blend functionality with elegant design.
+                    </p>
+                    <p>
+                        My goal is to help businesses and individuals realize their online potential. I strive for continuous 
+                        improvement and love working with new technologies. Let's build something great together!
+                    </p>
+                    <div class="skills">
+                        <h3>My Skills</h3>
+                        <div class="skill-tags">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                            <span>React</span>
+                            <span>Python</span>
+                            <span>GitHub</span>
+                            <span>Canava</span>
+                            <span>Spring Boot</span>
+                            <!--- <span></span>-->
+                             <!-- <span>Canava</span>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image" data-aos="fade-left" data-aos-delay="300">
+                    <img src="ppp photo.jpg" alt="Ravi Kushwaha">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 data-aos="fade-up">My Projects</h2>
+            <div class="projects-container">
+                <div class="project" data-aos="fade-up" data-aos-delay="200">
+
+                    <div class="project-image">
+                        <img src="hamrofood.com.png" alt="Project 1">
+                    </div>
+                    <div class="project-content">
+                        <h3>HAMRO FOOD.COM</h3>
+                        <p>HamroFood.com is a digital food service platform designed to streamline restaurant operations and enhance customer experience. The system provides an easy-to-use interface for staff to manage orders, track status in real time, and ensure faster service. It also supports user authentication, secure login, and instant notifications, making it efficient for both restaurant staff and customers.</p>
+                        <div class="project-tech">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JAVA SCRIPT</span>
+                        </div>
+                        <div class="project-links">
+                            <a href=https://github.com/BibekDahal07/hamrofod.git target="_blank"><i class="fab fa-github"></i> Code</a>
+                            <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project" data-aos="fade-up" data-aos-delay="400">
+                    <div class="project-image">
+                        <img src="medical.png".png" alt="Project 2">
+                    </div>
+
+                    <div class="project-content">
+                        <h3>Health Guardian</h3>
+                        <p>Health Guardian is an online healthcare platform that helps users find nearby hospitals and blood banks in real time. It includes a video conferencing feature for remote doctor consultations, aiming to save lives and time—especially in rural areas where hospitals are far away..</p>
+                        <div class="project-tech">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/BibekDahal01/Freshathon" target="_blank"><i class="fab fa-github"></i> Code</a>
+                            <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                 <div class="project" data-aos="fade-up" data-aos-delay="400">
+                    <div class="project-image">
+                        <img src="medical.png".png" alt="Project 2">
+                    </div>
+
+                    <div class="project-content">
+                        <h3>Simple Stock Watchlist</h3>
+                        <p>SimpleStock Watchlist is a web application built with Java Spring Boot that allows users to track and manage their favorite stocks in a personalized watchlist. Here's a brief description:..</p>
+                        <div class="project-tech">
+                            <span>Java</span>
+                            <span>HTMl</span>
+                            <span>Mysql</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/BibekDahal01/Freshathon" target="_blank"><i class="fab fa-github"></i> Code</a>
+                            <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project" data-aos="fade-up" data-aos-delay="600">
+                    <div class="project-image">
+                        <img src="https://placehold.co/600x400/3b82f6/white?text=Portfolio" alt="Project 3">
+                    </div>
+                    <div class="project-content">
+                        <h3>Portfolio Website</h3>
+                        <p>A responsive portfolio website built with HTML, CSS, and JavaScript. Features modern design, smooth animations, and contact form functionality.</p>
+                        <div class="project-tech">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Ravikushwaha4" target="_blank"><i class="fab fa-github"></i> Code</a>
+                            <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section id="certificates">
+        <div class="container">
+            <h2 data-aos="fade-up">My Certificates</h2>
+            <p class="section-description" data-aos="fade-up" data-aos-delay="200">
+                Here are some of the certifications I've earned to enhance my skills and knowledge in web development.
+            </p>
+            
+            <div class="certificates-container">
+                <div class="certificate" data-aos="fade-up" data-aos-delay="300">
+                    <div class="certificate-image">
+                        <img src="https://placehold.co/400x280/2563eb/white?text=Web+Development" alt="Web Development Certificate">
+                        <div class="certificate-overlay">
+                            <a href="#" class="view-btn">View Certificate</a>
+                        </div>
+                    </div>
+                    <div class="certificate-content">
+                        <h3>Advanced Web Development</h3>
+                        <p class="certificate-org">Coursera • 2023</p>
+                        <p>Mastered advanced concepts in web development including responsive design, APIs, and modern frameworks.</p>
+                    </div>
+                </div>
+                
+                <div class="certificate" data-aos="fade-up" data-aos-delay="400">
+                    <div class="certificate-image">
+                        <img src="https://placehold.co/400x280/06b6d4/white?text=JavaScript" alt="JavaScript Certificate">
+                        <div class="certificate-overlay">
+                            <a href="#" class="view-btn">View Certificate</a>
+                        </div>
+                    </div>
+                    <div class="certificate-content">
+                        <h3>JavaScript Algorithms and Data Structures</h3>
+                        <p class="certificate-org">freeCodeCamp • 2023</p>
+                        <p>Developed strong skills in JavaScript programming, algorithms, and data structure implementation.</p>
+                    </div>
+                </div>
+                
+                <div class="certificate" data-aos="fade-up" data-aos-delay="500">
+                    <div class="certificate-image">
+                        <img src="https://placehold.co/400x280/3b82f6/white?text=React+JS" alt="React Certificate">
+                        <div class="certificate-overlay">
+                            <a href="#" class="view-btn">View Certificate</a>
+                        </div>
+                    </div>
+                    <div class="certificate-content">
+                        <h3>React JS Masterclass</h3>
+                        <p class="certificate-org">Udemy • 2022</p>
+                        <p>Learned to build modern, responsive web applications using React.js with hooks, context, and routers.</p>
+                    </div>
+                </div>
+                
+                <div class="certificate" data-aos="fade-up" data-aos-delay="600">
+                    <div class="certificate-image">
+                        <img src="https://placehold.co/400x280/2563eb/white?text=UI%2FUX+Design" alt="UI/UX Design Certificate">
+                        <div class="certificate-overlay">
+                            <a href="#" class="view-btn">View Certificate</a>
+                        </div>
+                    </div>
+                    <div class="certificate-content">
+                        <h3>UI/UX Design Principles</h3>
+                        <p class="certificate-org">Google • 2022</p>
+                        <p>Gained expertise in user-centered design principles, wireframing, prototyping, and usability testing.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 data-aos="fade-up">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info" data-aos="fade-right">
+                    <h3>Let's talk about your project</h3>
+                    <p>If you want to collaborate or have any questions, feel free to get in touch!</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <a href="mailto:ravikushwaha@98292.com">ravikushwaha@98292.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Phone</h4>
+                                <a href="tel:+9779829275143">+977 9829275143</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-github"></i>
+                            <div>
+                                <h4>GitHub</h4>
+                                <a href="https://github.com/ravikushwaha1" target="_blank">github.com/Ravikushwaha4</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-linkedin"></i>
+                            <div>
+                                <h4>LinkedIn</h4>
+                                <a href="https://www.linkedin.com/in/ravi-kushwaha-614659324/" target="_blank">linkedin.com/in/ravi-kushwaha</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <form id="contactForm" class="contact-form" data-aos="fade-left" data-aos-delay="300">
+                    <div class="form-group">
+                        <input type="text" id="name" placeholder="Your Name" required>
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder="Your Email" required>
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+                        <i class="fas fa-comment"></i>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="https://placehold.co/60x60/2563eb/white?text=RK" alt="Logo">
+                    <h3>Ravi Kushwaha</h3>
+                </div>
+                <p>Web Developer & Designer</p>
+                <div class="social-links">
+                    <a href="https://github.com/Ravikushwaha4" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/ravi-kushwaha-614659324" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Ravi Kushwaha. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
+--- File: script.js ---
+
+// Initialize AOS (Animate On Scroll)
+document.addEventListener('DOMContentLoaded', function() {
+    AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true
+    });
+    
+    // Header scroll effect
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+    
+    // Mobile menu toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navMenu = document.querySelector('nav ul');
+    
+    if (menuToggle) {
+        menuToggle.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+        });
+    }
+    
+    // Close mobile menu when clicking on a link
+    const navLinks = document.querySelectorAll('nav ul li a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            navMenu.classList.remove('active');
+        });
+    });
+    
+    // Contact form handling
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            // Simple validation
+            if (!name || !email || !message) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            // Email validation
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+            
+            // In a real application, you would send the form data to a server here
+            // For this example, we'll just show a success message
+            alert(`Thank you for your message, ${name}! I will get back to you soon.`);
+            
+            // Reset the form
+            contactForm.reset();
+        });
+    }
+    
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+    
+    // Add animation to skill tags on hover
+    const skillTags = document.querySelectorAll('.skill-tags span');
+    skillTags.forEach(tag => {
+        tag.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-3px)';
+            this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
+        });
+        
+        tag.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = 'none';
+        });
+    });
+    
+    // Certificate modal functionality
+    const certificateImages = document.querySelectorAll('.certificate-image');
+    certificateImages.forEach(image => {
+        image.addEventListener('click', function() {
+            const certificateSrc = this.querySelector('img').src;
+            const certificateTitle = this.nextElementSibling.querySelector('h3').textContent;
+            
+            // Create modal
+            const modal = document.createElement('div');
+            modal.classList.add('modal');
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <h3>${certificateTitle}</h3>
+                    <img src="${certificateSrc}" alt="${certificateTitle}">
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Show modal
+            setTimeout(() => {
+                modal.classList.add('active');
+            }, 10);
+            
+            // Close modal
+            const closeModal = modal.querySelector('.close-modal');
+            closeModal.addEventListener('click', function() {
+                modal.classList.remove('active');
+                setTimeout(() => {
+                    document.body.removeChild(modal);
+                }, 300);
+            });
+            
+            // Close modal when clicking outside
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                    setTimeout(() => {
+                        document.body.removeChild(modal);
+                    }, 300);
+                }
+            });
+        });
+    });
+});
+
+// Add modal styles dynamically
+const modalStyles = `
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+    
+    .modal.active {
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .modal-content {
+        position: relative;
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        max-width: 90%;
+        max-height: 90%;
+        overflow: auto;
+        text-align: center;
+    }
+    
+    .close-modal {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #333;
+    }
+    
+    .modal-content h3 {
+        margin-bottom: 20px;
+        color: #2563eb;
+    }
+    
+    .modal-content img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+    }
+`;
+
+const styleSheet = document.createElement('style');
+styleSheet.textContent = modalStyles;
+document.head.appendChild(styleSheet);
+
+--- File: styles.css ---
+
+/* Global Styles */
+:root {
+    --primary: #2563eb;
+    --secondary: #3b82f6;
+    --accent: #06b6d4;
+    --dark: #1e293b;
+    --light: #f8fafc;
+    --gray: #64748b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--light);
+    color: var(--dark);
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+section {
+    padding: 100px 0;
+}
+
+h1, h2, h3, h4 {
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+h1 {
+    font-size: 3.5rem;
+}
+
+h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    border-radius: 2px;
+}
+
+p {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    color: var(--gray);
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    margin-left: 15px;
+}
+
+.btn-outline:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.highlight {
+    color: var(--primary);
+}
+
+.section-description {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 50px;
+}
+
+/* Header Styles */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 20px 0;
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+header.scrolled {
+    padding: 15px 0;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+    border: 2px solid var(--primary);
+}
+
+.logo span {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--dark);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 30px;
+}
+
+nav ul li a {
+    color: var(--dark);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary);
+    transition: width 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: var(--primary);
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Hero Section */
+#hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+#hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.05) 0%, transparent 70%);
+}
+
+.hero-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-content h1 {
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 1.3rem;
+    margin-bottom: 40px;
+}
+
+.hero-btns {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* About Section */
+#about {
+    background-color: white;
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.about-text p {
+    margin-bottom: 25px;
+}
+
+.skills {
+    margin-top: 30px;
+}
+
+.skills h3 {
+    margin-bottom: 15px;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill-tags span {
+    padding: 8px 15px;
+    background-color: rgba(37, 99, 235, 0.1);
+    color: var(--primary);
+    border-radius: 50px;
+    font-weight: 600;
+}
+
+.about-image {
+    text-align: center;
+}
+
+.about-image img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Projects Section */
+#projects {
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(59, 130, 246, 0.05) 100%);
+}
+
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.project {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.project-image {
+    overflow: hidden;
+}
+
+.project-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.project:hover .project-image img {
+    transform: scale(1.05);
+}
+
+.project-content {
+    padding: 25px;
+}
+
+.project-content h3 {
+    color: var(--dark);
+    margin-bottom: 15px;
+}
+
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.project-tech span {
+    padding: 5px 10px;
+    background-color: rgba(37, 99, 235, 0.1);
+    color: var(--primary);
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+.project-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.project-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 15px;
+    background-color: var(--light);
+    color: var(--dark);
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.project-links a:hover {
+    background-color: var(--primary);
+    color: white;
+}
+
+/* Certificates Section */
+#certificates {
+    background-color: white;
+}
+
+.certificates-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.certificate {
+    background-color: var(--light);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.certificate:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.certificate-image {
+    position: relative;
+    overflow: hidden;
+    height: 200px;
+}
+
+.certificate-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.certificate:hover .certificate-image img {
+    transform: scale(1.05);
+}
+
+.certificate-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(37, 99, 235, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.certificate:hover .certificate-overlay {
+    opacity: 1;
+}
+
+.view-btn {
+    padding: 10px 20px;
+    background-color: white;
+    color: var(--primary);
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.view-btn:hover {
+    background-color: var(--dark);
+    color: white;
+}
+
+.certificate-content {
+    padding: 20px;
+}
+
+.certificate-content h3 {
+    color: var(--dark);
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+}
+
+.certificate-org {
+    color: var(--primary);
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+/* Contact Section */
+#contact {
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(59, 130, 246, 0.05) 100%);
+}
+
+.contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    margin-top: 50px;
+}
+
+.contact-info h3 {
+    margin-bottom: 20px;
+}
+
+.contact-details {
+    margin-top: 30px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.contact-item i {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin-right: 15px;
+}
+
+.contact-item h4 {
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+
+.contact-item a {
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-item a:hover {
+    color: var(--primary);
+}
+
+.contact-form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 15px 15px 15px 45px;
+    border: 1px solid #e2e8f0;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.form-group i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gray);
+}
+
+.form-group textarea + i {
+    top: 20px;
+    transform: none;
+}
+
+/* Footer */
+footer {
+    background-color: var(--dark);
+    color: white;
+    padding: 60px 0 20px;
+}
+
+.footer-content {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.footer-logo img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+    border: 2px solid white;
+}
+
+.footer-logo h3 {
+    margin-bottom: 0;
+    color: white;
+}
+
+footer p {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    background-color: var(--primary);
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+    text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    h1 {
+        font-size: 2.8rem;
+    }
+    
+    h2 {
+        font-size: 2.2rem;
+    }
+    
+    .about-content,
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .about-image {
+        order: -1;
+    }
+    
+    .certificates-container {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    section {
+        padding: 80px 0;
+    }
+    
+    .menu-toggle {
+        display: block;
+    }
+    
+    nav ul {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background-color: white;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+    
+    nav ul.active {
+        left: 0;
+    }
+    
+    nav ul li {
+        margin: 15px 0;
+    }
+    
+    .hero-btns {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn-outline {
+        margin-left: 0;
+        margin-top: 15px;
+    }
+    
+    .projects-container,
+    .certificates-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    h1 {
+        font-size: 2.2rem;
+    }
+    
+    h2 {
+        font-size: 1.8rem;
+    }
+    
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+    
+    .logo span {
+        font-size: 1.2rem;
+    }
+    
+    .certificate-content h3 {
+        font-size: 1.1rem;
+    }
+}
+
