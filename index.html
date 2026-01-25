@@ -11,7 +11,6 @@
 </head>
 
 <body>
-    <!-- Header Section -->
     <header>
         <div class="container header-container">
             <div class="logo">
@@ -23,6 +22,9 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#certificates">Certificates</a></li>
+                    <!-- ADDED RESUME LINK -->
+                    <!-- <li><a href="resume.pdf" download="Ravi kushwaha (Resume).pdf" class="resume-btn">Resume</a></li> -->
+                    <li><a href="resume.pdf" download="Ravi_Kushwaha_Resume.pdf" class="resume-btn">Resume</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
                 <div class="menu-toggle">
@@ -32,7 +34,9 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- REST OF YOUR EXISTING CODE REMAINS EXACTLY THE SAME -->
+    <!-- From line 38 to the end of your file -->
+
     <section id="hero">
         <div class="container">
             <div class="hero-content">
@@ -47,7 +51,6 @@
         </div>
     </section>
 
-    <!-- About Section -->
     <section id="about">
         <div class="container">
             <h2 data-aos="fade-up">About Me</h2>
@@ -68,27 +71,32 @@
                     <div class="skills">
                         <h3>My Skills</h3>
                         <div class="skill-tags">
+                            <span>C</span>
+                            <span>CPP</span>
+                            <span>Java</span>
+                            <span>Python</span>
                             <span>HTML</span>
                             <span>CSS</span>
                             <span>JavaScript</span>
                             <span>React</span>
+                            <span>Node.js</span>
+                            <span>Express.js</span>
                             <span>Python</span>
                             <span>GitHub</span>
                             <span>Canava</span>
                             <span>Spring Boot</span>
-                            <!--- <span></span>-->
-                            <!-- <span>Canava</span>-->
-                        </div>
+                            <span>MongoDB</span>
+                            <span>Power BI</span>
+                            </div>
                     </div>
                 </div>
                 <div class="about-image" data-aos="fade-left" data-aos-delay="300">
-                    <img src="ppp photo.jpg" alt="Ravi Kushwaha">
+                    <img src="Hd  photo.png" alt="Ravi Kushwaha">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
     <section id="projects">
         <div class="container">
             <h2 data-aos="fade-up">My Projects</h2>
@@ -124,10 +132,10 @@
 
                     <div class="project-content">
                         <h3>Health Guardian</h3>
-                        <p>Health Guardian is an online healthcare platform that helps users find nearby hospitals and
+                        <p>"Health Guardian is an online healthcare platform that helps users find nearby hospitals and
                             blood banks in real time. It includes a video conferencing feature for remote doctor
                             consultations, aiming to save lives and time—especially in rural areas where hospitals are
-                            far away..</p>
+                            far away.."</p>
                         <div class="project-tech">
                             <span>HTML</span>
                             <span>CSS</span>
@@ -254,7 +262,6 @@
         </div>
     </section>
 
-    <!-- Certificates Section -->
     <section id="certificates">
         <div class="container">
             <h2 data-aos="fade-up">My Certificates</h2>
@@ -415,7 +422,6 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact">
         <div class="container">
             <h2 data-aos="fade-up">Get In Touch</h2>
@@ -459,15 +465,15 @@
 
                 <form id="contactForm" class="contact-form" data-aos="fade-left" data-aos-delay="300">
                     <div class="form-group">
-                        <input type="text" id="name" placeholder="Your Name" required>
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
                         <i class="fas fa-user"></i>
                     </div>
                     <div class="form-group">
-                        <input type="email" id="email" placeholder="Your Email" required>
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
                         <i class="fas fa-envelope"></i>
                     </div>
                     <div class="form-group">
-                        <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+                        <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
                         <i class="fas fa-comment"></i>
                     </div>
                     <button type="submit" class="btn">Send Message</button>
@@ -476,7 +482,6 @@
         </div>
     </section>
 
-    <!-- Footer Section -->
     <footer>
         <div class="container">
             <div class="footer-content">

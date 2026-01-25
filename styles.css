@@ -29,14 +29,29 @@ body {
     padding: 0 20px;
 }
 
+/* ADDED: Resume button style */
+.resume-btn {
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    color: white !important;
+    padding: 8px 20px !important;
+    border-radius: 50px;
+    margin-left: 10px;
+}
+
+.resume-btn:hover {
+    background: linear-gradient(to right, var(--secondary), var(--accent)) !important;
+}
+
+.resume-btn::after {
+    display: none !important;
+}
+
 section {
     padding: 100px 0;
 }
 
-h1, h2, h3, h4 {
-    margin-bottom: 20px;
-    font-weight: 700;
-}
+/* REST OF YOUR CSS REMAINS EXACTLY THE SAME */
+/* From line 39 to the end of your file */
 
 h1 {
     font-size: 3.5rem;

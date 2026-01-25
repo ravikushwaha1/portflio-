@@ -34,13 +34,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Contact form handling
+    // UPDATED: Contact form handling with Web3Forms API
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            // Get form values
+            // Get form values for validation
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const message = document.getElementById('message').value;
@@ -57,13 +59,38 @@ document.addEventListener('DOMContentLoaded', function() {
                 alert('Please enter a valid email address');
                 return;
             }
-            
-            // In a real application, you would send the form data to a server here
-            // For this example, we'll just show a success message
-            alert(`Thank you for your message, ${name}! I will get back to you soon.`);
-            
-            // Reset the form
-            contactForm.reset();
+
+            // Prepare Data for API
+            const formData = new FormData(contactForm);
+            formData.append("access_key", "15236e73-936f-4e0b-8265-ae10ace0666a");
+
+            // UI Loading State
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = "Sending...";
+            submitBtn.disabled = true;
+
+            try {
+                const response = await fetch("https://api.web3forms.com/submit", {
+                    method: "POST",
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert("Success! Your message has been sent.");
+                    contactForm.reset();
+                } else {
+                    alert("Error: " + data.message);
+                }
+
+            } catch (error) {
+                alert("Something went wrong. Please check your connection and try again.");
+            } finally {
+                // Restore Button State
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
         });
     }
     

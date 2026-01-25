@@ -134,6 +134,7 @@ if __name__ == "__main__":
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -142,8 +143,8 @@ if __name__ == "__main__":
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <!-- Header Section -->
     <header>
         <div class="container header-container">
             <div class="logo">
@@ -164,12 +165,12 @@ if __name__ == "__main__":
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section id="hero">
         <div class="container">
             <div class="hero-content">
                 <h1 data-aos="fade-up">Hi, I'm <span class="highlight">Ravi Kushwaha</span></h1>
-                <p data-aos="fade-up" data-aos-delay="300">A Passionate Web Developer Creating Engaging and Responsive Websites</p>
+                <p data-aos="fade-up" data-aos-delay="300">A Passionate Web Developer Creating Engaging and Responsive
+                    Websites</p>
                 <div class="hero-btns" data-aos="fade-up" data-aos-delay="500">
                     <a href="#projects" class="btn">View My Work</a>
                     <a href="#contact" class="btn btn-outline">Contact Me</a>
@@ -178,17 +179,21 @@ if __name__ == "__main__":
         </div>
     </section>
 
-    <!-- About Section -->
     <section id="about">
         <div class="container">
             <h2 data-aos="fade-up">About Me</h2>
             <div class="about-content">
                 <div class="about-text" data-aos="fade-right">
                     <p>
-                      I'm Ravi Kushwaha, a passionate Web Developer dedicated to building clean, responsive, and user-friendly websites. I specialize in HTML, CSS, JavaScript, and modern frameworks such as React and Vue.js. With a strong focus on performance, accessibility, and seamless user experience, I strive to deliver high-quality web solutions that blend functionality with elegant design.
+                        I'm Ravi Kushwaha, a passionate Web Developer dedicated to building clean, responsive, and
+                        user-friendly websites. I specialize in HTML, CSS, JavaScript, and modern frameworks such as
+                        React and Vue.js. With a strong focus on performance, accessibility, and seamless user
+                        experience, I strive to deliver high-quality web solutions that blend functionality with elegant
+                        design.
                     </p>
                     <p>
-                        My goal is to help businesses and individuals realize their online potential. I strive for continuous 
+                        My goal is to help businesses and individuals realize their online potential. I strive for
+                        continuous
                         improvement and love working with new technologies. Let's build something great together!
                     </p>
                     <div class="skills">
@@ -202,9 +207,7 @@ if __name__ == "__main__":
                             <span>GitHub</span>
                             <span>Canava</span>
                             <span>Spring Boot</span>
-                            <!--- <span></span>-->
-                             <!-- <span>Canava</span>-->
-                        </div>
+                            </div>
                     </div>
                 </div>
                 <div class="about-image" data-aos="fade-left" data-aos-delay="300">
@@ -214,7 +217,6 @@ if __name__ == "__main__":
         </div>
     </section>
 
-    <!-- Projects Section -->
     <section id="projects">
         <div class="container">
             <h2 data-aos="fade-up">My Projects</h2>
@@ -226,56 +228,67 @@ if __name__ == "__main__":
                     </div>
                     <div class="project-content">
                         <h3>HAMRO FOOD.COM</h3>
-                        <p>HamroFood.com is a digital food service platform designed to streamline restaurant operations and enhance customer experience. The system provides an easy-to-use interface for staff to manage orders, track status in real time, and ensure faster service. It also supports user authentication, secure login, and instant notifications, making it efficient for both restaurant staff and customers.</p>
+                        <p>"HamroFood.com is a digital food service platform that streamlines restaurant operations and
+                            enhances customer experience with real-time order tracking, secure login, and instant
+                            notifications."</p>
                         <div class="project-tech">
                             <span>HTML</span>
                             <span>CSS</span>
                             <span>JAVA SCRIPT</span>
                         </div>
                         <div class="project-links">
-                            <a href=https://github.com/BibekDahal07/hamrofod.git target="_blank"><i class="fab fa-github"></i> Code</a>
-                            <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href=https://github.com/BibekDahal07/hamrofod.git target="_blank"><i
+                                    class="fab fa-github"></i> Code</a>
+                            <a href="https://rupeshsah86.github.io/Hamro_Food/" target="_blank"><i
+                                    class="fas fa-external-link-alt"></i> Live Demo</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="project" data-aos="fade-up" data-aos-delay="400">
                     <div class="project-image">
-                        <img src="medical.png".png" alt="Project 2">
+                        <img src="medical.png" alt="Project 2">
                     </div>
 
                     <div class="project-content">
                         <h3>Health Guardian</h3>
-                        <p>Health Guardian is an online healthcare platform that helps users find nearby hospitals and blood banks in real time. It includes a video conferencing feature for remote doctor consultations, aiming to save lives and time—especially in rural areas where hospitals are far away..</p>
+                        <p>"Health Guardian is an online healthcare platform that helps users find nearby hospitals and
+                            blood banks in real time. It includes a video conferencing feature for remote doctor
+                            consultations, aiming to save lives and time—especially in rural areas where hospitals are
+                            far away.."</p>
                         <div class="project-tech">
                             <span>HTML</span>
                             <span>CSS</span>
                             <span>JavaScript</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/BibekDahal01/Freshathon" target="_blank"><i class="fab fa-github"></i> Code</a>
-                            <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="https://github.com/BibekDahal01/Freshathon" target="_blank"><i
+                                    class="fab fa-github"></i> Code</a>
+                            <a href="https://healthguardian-jet.vercel.app/" target="_blank"><i
+                                    class="fas fa-external-link-alt"></i> Live Demo</a>
                         </div>
                     </div>
                 </div>
 
-
-
-                 <div class="project" data-aos="fade-up" data-aos-delay="400">
+                <div class="project" data-aos="fade-up" data-aos-delay="400">
                     <div class="project-image">
-                        <img src="medical.png".png" alt="Project 2">
+                        <img src="stock_Watch_list.png" alt="Project 3">
                     </div>
 
                     <div class="project-content">
                         <h3>Simple Stock Watchlist</h3>
-                        <p>SimpleStock Watchlist is a web application built with Java Spring Boot that allows users to track and manage their favorite stocks in a personalized watchlist. Here's a brief description:..</p>
+                        <p>"SimpleStock Watchlist is a web application built with Java Spring Boot that enables users to
+                            track and manage their favorite stocks in a personalized watchlist. It features real-time
+                            stock updates, an intuitive interface, and secure data management, helping users make
+                            informed investment decisions."</p>
                         <div class="project-tech">
                             <span>Java</span>
                             <span>HTMl</span>
                             <span>Mysql</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/BibekDahal01/Freshathon" target="_blank"><i class="fab fa-github"></i> Code</a>
+                            <a href="https://github.com/ravikushwaha1/copyOf_javaProject.git" target="_blank"><i
+                                    class="fab fa-github"></i> Code</a>
                             <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
                         </div>
                     </div>
@@ -283,95 +296,252 @@ if __name__ == "__main__":
 
                 <div class="project" data-aos="fade-up" data-aos-delay="600">
                     <div class="project-image">
-                        <img src="https://placehold.co/600x400/3b82f6/white?text=Portfolio" alt="Project 3">
+                        <img src="underwater_mine.png" alt="Project 4">
                     </div>
                     <div class="project-content">
-                        <h3>Portfolio Website</h3>
-                        <p>A responsive portfolio website built with HTML, CSS, and JavaScript. Features modern design, smooth animations, and contact form functionality.</p>
+                        <h3>UnderWater Mine Detection</h3>
+                        <p>"Underwater Mine Detection is an AI-powered system using YOLO to identify and classify
+                            underwater objects, distinguishing harmless marine life from dangerous mines to enhance
+                            marine safety."</p>
                         <div class="project-tech">
-                            <span>HTML</span>
-                            <span>CSS</span>
-                            <span>JavaScript</span>
+                            <span>Python</span>
+                            <span>Machine Learning</span>
+                            <span>YOLO</span>
+                            <span>OpenCV</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/Ravikushwaha4" target="_blank"><i class="fab fa-github"></i> Code</a>
+                            <a href="https://github.com/ravikushwaha1/Under_WaterMine-Detection.git" target="_blank"><i
+                                    class="fab fa-github"></i> Code</a>
                             <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
                         </div>
                     </div>
                 </div>
+
+
+                <div class="project" data-aos="fade-up" data-aos-delay="600">
+                    <div class="project-image">
+                        <img src="BloodBank.png" alt="Project 5">
+                    </div>
+                    <div class="project-content">
+                        <h3>Blood Bank Management System</h3>
+                        <p>"A comprehensive MERN stack web application connecting blood donors with recipients. Features
+                            include real-time blood inventory, donor matching, emergency requests, admin dashboard, and
+                            secure authentication system."</p>
+                        <div class="project-tech">
+                            <span>React.js</span>
+                            <span>Node.js</span>
+                            <span>Express.js</span>
+                            <span>MongoDB</span>
+                            <span>JWT Auth</span>
+                            <span>REST API</span>
+                            <span>React Router</span>
+                            <span>Axios</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/ravikushwaha1/Blood_Bank_fronted-part_D.git" target="_blank"><i
+                                    class="fab fa-github"></i> Code</a>
+                            <a href="https://blood-bank-fronted-part-oks9b53s0-ravikushwaha1s-projects.vercel.app/"
+                                target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="project" data-aos="fade-up" data-aos-delay="600">
+                    <div class="project-image">
+                        <img src="MedicineTracker.png" alt="Medicine Tracking Project">
+                    </div>
+                    <div class="project-content">
+                        <h3>Medicine Tracking & Expiry Management System</h3>
+                        <p>
+                            "A Python-based web application built using Django to manage medicine inventory and track
+                            expiry dates. The system provides role-based access, secure authentication, expiry alerts,
+                            and an admin dashboard to ensure efficient medicine management."
+                        </p>
+                        <div class="project-tech">
+                            <span>Python</span>
+                            <span>Django</span>
+                            <span>SQLite</span>
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>Bootstrap</span>
+                            <span>Django Auth</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/ravikushwaha1/python-medicine-track-project.git"
+                                target="_blank">
+                                <i class="fab fa-github"></i> Code</a>
+                            <a href="#" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </section>
 
-    <!-- Certificates Section -->
     <section id="certificates">
         <div class="container">
             <h2 data-aos="fade-up">My Certificates</h2>
             <p class="section-description" data-aos="fade-up" data-aos-delay="200">
                 Here are some of the certifications I've earned to enhance my skills and knowledge in web development.
             </p>
-            
+
             <div class="certificates-container">
                 <div class="certificate" data-aos="fade-up" data-aos-delay="300">
                     <div class="certificate-image">
-                        <img src="https://placehold.co/400x280/2563eb/white?text=Web+Development" alt="Web Development Certificate">
+                        <img src="IIT_C.png" alt=" Spoken Tutorial Project, IIT Bombay.">
                         <div class="certificate-overlay">
                             <a href="#" class="view-btn">View Certificate</a>
                         </div>
                     </div>
                     <div class="certificate-content">
-                        <h3>Advanced Web Development</h3>
-                        <p class="certificate-org">Coursera • 2023</p>
-                        <p>Mastered advanced concepts in web development including responsive design, APIs, and modern frameworks.</p>
+                        <h3> Spoken Tutorial Project, IIT Bombay</h3>
+                        <p class="certificate-org">Coursera • 2024</p>
+                        <p> Successfully completed the C Programming Test organized at
+                            Sri Eshwar College of Engineering under the Spoken Tutorial Project,
+                            IIT Bombay. The certification was awarded after passing a
+                            proctored online examination invigilated by Dr. Anandaraj A..</p>
                     </div>
                 </div>
-                
+
                 <div class="certificate" data-aos="fade-up" data-aos-delay="400">
                     <div class="certificate-image">
-                        <img src="https://placehold.co/400x280/06b6d4/white?text=JavaScript" alt="JavaScript Certificate">
+                        <img src="IIT_CPP.png" alt="Spoken Tutorial Project, IIT Bombay.">
                         <div class="certificate-overlay">
                             <a href="#" class="view-btn">View Certificate</a>
                         </div>
                     </div>
                     <div class="certificate-content">
-                        <h3>JavaScript Algorithms and Data Structures</h3>
-                        <p class="certificate-org">freeCodeCamp • 2023</p>
-                        <p>Developed strong skills in JavaScript programming, algorithms, and data structure implementation.</p>
+                        <h3>Spoken Tutorial Project, IIT Bombay</h3>
+                        <p class="certificate-org">Coursera • 2024</p>
+                        <p>Successfully completed the CPP Programming Test organized at
+                            Sri Eshwar College of Engineering under the Spoken Tutorial Project,
+                            IIT Bombay. The certification was awarded after passing a
+                            proctored online examination invigilated by Dr. Anandaraj A..</p>
                     </div>
                 </div>
-                
+
                 <div class="certificate" data-aos="fade-up" data-aos-delay="500">
                     <div class="certificate-image">
-                        <img src="https://placehold.co/400x280/3b82f6/white?text=React+JS" alt="React Certificate">
+                        <img src="Createathon 2024.jpg" alt="Certificate">
                         <div class="certificate-overlay">
                             <a href="#" class="view-btn">View Certificate</a>
                         </div>
                     </div>
                     <div class="certificate-content">
-                        <h3>React JS Masterclass</h3>
-                        <p class="certificate-org">Udemy • 2022</p>
-                        <p>Learned to build modern, responsive web applications using React.js with hooks, context, and routers.</p>
+                        <h3>Certificate of createathon</h3>
+                        <p class="certificate-org">Year • 2024</p>
+                        <p>
+                            Secured Runner-Up position in CREATEATHON 2024, a Web Hackathon organized by the Department
+                            of Computer Science and Engineering, Sri Eshwar College of Engineering, Coimbatore. The
+                            event emphasized innovation, teamwork, and practical problem-solving through web-based
+                            solutions.</p>
                     </div>
                 </div>
-                
+
                 <div class="certificate" data-aos="fade-up" data-aos-delay="600">
                     <div class="certificate-image">
-                        <img src="https://placehold.co/400x280/2563eb/white?text=UI%2FUX+Design" alt="UI/UX Design Certificate">
+                        <img src="CTC.png" alt="Certificate">
                         <div class="certificate-overlay">
                             <a href="#" class="view-btn">View Certificate</a>
                         </div>
                     </div>
                     <div class="certificate-content">
-                        <h3>UI/UX Design Principles</h3>
-                        <p class="certificate-org">Google • 2022</p>
-                        <p>Gained expertise in user-centered design principles, wireframing, prototyping, and usability testing.</p>
+                        <h3>Participated in Cyber Security Workshop</h3>
+                        <p class="certificate-org">Year • 2024</p>
+                        <p>Participated in a Cyber Security Workshop followed by a CTF (Capture The Flag) competition,
+                            conducted by Tamil CTF and sponsored by Sri Eshwar College of Engineering. Gained hands-on
+                            exposure to cybersecurity concepts, problem-solving, and real-world security challenges.</p>
                     </div>
                 </div>
+
+
+                <div class="certificate" data-aos="fade-up" data-aos-delay="600">
+                    <div class="certificate-image">
+                        <img src="Freshathoon.png" alt="Certificate">
+                        <div class="certificate-overlay">
+                            <a href="#" class="view-btn">View Certificate</a>
+                        </div>
+                    </div>
+                    <div class="certificate-content">
+                        <h3>Freshathon 2025 </h3>
+                        <p class="certificate-org">Year • 2025</p>
+                        <p>Secured Third Place in Freshathon, a campus-level hackathon organized by my institution,
+                            demonstrating teamwork, problem-solving, and practical application of technical skills.</p>
+                    </div>
+                </div>
+
+                <div class="certificate" data-aos="fade-up" data-aos-delay="600">
+                    <div class="certificate-image">
+                        <img src="Karpagam hackathon.png" alt="Certificate">
+                        <div class="certificate-overlay">
+                            <a href="#" class="view-btn">View Certificate</a>
+                        </div>
+                    </div>
+                    <div class="certificate-content">
+                        <h3>National-Level 24-Hour Hackathon (HackSpora 2k25)</h3>
+                        <p class="certificate-org">Year • 2025</p>
+                        <p>Participated in a national-level 24-hour hackathon organized by the Department of Artificial
+                            Intelligence and Data Science, Karpagam Academy of Higher Education, gaining hands-on
+                            experience in problem-solving, teamwork, and rapid prototyping</p>
+                    </div>
+                </div>
+
+                <div class="certificate" data-aos="fade-up" data-aos-delay="600">
+                    <div class="certificate-image">
+                        <img src="DMBS.png" alt="Certificate">
+                        <div class="certificate-overlay">
+                            <a href="#" class="view-btn">View Certificate</a>
+                        </div>
+                    </div>
+                    <div class="certificate-content">
+                        <h3>Top DBMS Interview Questions</h3>
+                        <p class="certificate-org">Year • 2025</p>
+                        <p>Successfully completed all practice problems focused on Database Management Systems (DBMS),
+                            strengthening core concepts such as SQL, normalization, indexing, and query optimization.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="certificate" data-aos="fade-up" data-aos-delay="600">
+                    <div class="certificate-image">
+                        <img src="DSA_udemy.png" alt="Certificate">
+                        <div class="certificate-overlay">
+                            <a href="#" class="view-btn">View Certificate</a>
+                        </div>
+                    </div>
+                    <div class="certificate-content">
+                        <h3>Data Structures and Algorithms using C & C++ - Udemy</h3>
+                        <p class="certificate-org">Year • 2025</p>
+                        <p>Completed a comprehensive course covering arrays, linked lists, stacks, queues, trees,
+                            graphs, sorting, searching, recursion, and time–space complexity with hands-on coding
+                            practice.</p>
+                    </div>
+                </div>
+
+                <div class="certificate" data-aos="fade-up" data-aos-delay="600">
+                    <div class="certificate-image">
+                        <img src="DSA with java.png" alt="Certificate">
+                        <div class="certificate-overlay">
+                            <a href="#" class="view-btn">View Certificate</a>
+                        </div>
+                    </div>
+                    <div class="certificate-content">
+                        <h3>Data Structures and Algorithms using Java – GUVI</h3>
+                        <p class="certificate-org">Year • 2025</p>
+                        <p>Successfully completed a structured program covering arrays, strings, linked lists, stacks,
+                            queues, trees, graphs, sorting, searching, recursion, and time & space complexity with
+                            hands-on problem solving.</p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact">
         <div class="container">
             <h2 data-aos="fade-up">Get In Touch</h2>
@@ -379,7 +549,7 @@ if __name__ == "__main__":
                 <div class="contact-info" data-aos="fade-right">
                     <h3>Let's talk about your project</h3>
                     <p>If you want to collaborate or have any questions, feel free to get in touch!</p>
-                    
+
                     <div class="contact-details">
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
@@ -406,7 +576,8 @@ if __name__ == "__main__":
                             <i class="fab fa-linkedin"></i>
                             <div>
                                 <h4>LinkedIn</h4>
-                                <a href="https://www.linkedin.com/in/ravi-kushwaha-614659324/" target="_blank">linkedin.com/in/ravi-kushwaha</a>
+                                <a href="https://www.linkedin.com/in/ravi-kushwaha-614659324/"
+                                    target="_blank">linkedin.com/in/ravi-kushwaha</a>
                             </div>
                         </div>
                     </div>
@@ -414,15 +585,15 @@ if __name__ == "__main__":
 
                 <form id="contactForm" class="contact-form" data-aos="fade-left" data-aos-delay="300">
                     <div class="form-group">
-                        <input type="text" id="name" placeholder="Your Name" required>
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
                         <i class="fas fa-user"></i>
                     </div>
                     <div class="form-group">
-                        <input type="email" id="email" placeholder="Your Email" required>
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
                         <i class="fas fa-envelope"></i>
                     </div>
                     <div class="form-group">
-                        <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+                        <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
                         <i class="fas fa-comment"></i>
                     </div>
                     <button type="submit" class="btn">Send Message</button>
@@ -431,7 +602,6 @@ if __name__ == "__main__":
         </div>
     </section>
 
-    <!-- Footer Section -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -442,13 +612,14 @@ if __name__ == "__main__":
                 <p>Web Developer & Designer</p>
                 <div class="social-links">
                     <a href="https://github.com/Ravikushwaha4" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/ravi-kushwaha-614659324" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.linkedin.com/in/ravi-kushwaha-614659324" target="_blank"><i
+                            class="fab fa-linkedin"></i></a>
                     <a href="#"><i class="fab fa-twitter"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Ravi Kushwaha. All Rights Reserved.</p>
+                <p>&copy; 2026 Ravi Kushwaha. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
@@ -456,6 +627,7 @@ if __name__ == "__main__":
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>
 
 --- File: script.js ---
@@ -496,13 +668,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Contact form handling
+    // UPDATED: Contact form handling with Web3Forms API
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            // Get form values
+            // Get form values for validation
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const message = document.getElementById('message').value;
@@ -519,13 +693,38 @@ document.addEventListener('DOMContentLoaded', function() {
                 alert('Please enter a valid email address');
                 return;
             }
-            
-            // In a real application, you would send the form data to a server here
-            // For this example, we'll just show a success message
-            alert(`Thank you for your message, ${name}! I will get back to you soon.`);
-            
-            // Reset the form
-            contactForm.reset();
+
+            // Prepare Data for API
+            const formData = new FormData(contactForm);
+            formData.append("access_key", "15236e73-936f-4e0b-8265-ae10ace0666a");
+
+            // UI Loading State
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = "Sending...";
+            submitBtn.disabled = true;
+
+            try {
+                const response = await fetch("https://api.web3forms.com/submit", {
+                    method: "POST",
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert("Success! Your message has been sent.");
+                    contactForm.reset();
+                } else {
+                    alert("Error: " + data.message);
+                }
+
+            } catch (error) {
+                alert("Something went wrong. Please check your connection and try again.");
+            } finally {
+                // Restore Button State
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
         });
     }
     
